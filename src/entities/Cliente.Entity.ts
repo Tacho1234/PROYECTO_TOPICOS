@@ -11,11 +11,11 @@ export class ClienteEntity{
     @Column()
     correo: string;
     @Column()
-    telefono: string;
+    telefono: number;
     @Column()
     domicilio: string;
     @Column()
-    fecha_nacimiento: string;
+    fecha_nacimiento: Date;
     @OneToMany(() => ConsumoEntity, (consumo) => consumo.idCliente)
     consumo: ConsumoEntity[];
 }
