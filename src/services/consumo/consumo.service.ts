@@ -20,14 +20,16 @@ export class ConsumoService {
         let total = 0;
         let fecha_nacimiento = new Date(((await (this.cliente.getdate(consumo.idCliente))).fecha_nacimiento));
         
-        let pagado = false;
+        let pagado = consumo.pagado;
 
         let edad = this.calcular_edad(fecha_nacimiento);
 
-        if(consumo.consumo> 1 && consumo.consumo< 101){
+        if(consumo.consumo>= 1 && consumo.consumo<= 100){
             total= consumo.consumo * 150;
-        }else if(consumo.consumo> 101 && consumo.consumo< 301){
+        }else if(consumo.consumo>= 101 && consumo.consumo<= 300){
             total= consumo.consumo * 190;
+        }else{
+            console.log("El consumo esta fuera de rango");
         }
 
         if(edad >= 50){
@@ -87,5 +89,13 @@ export class ConsumoService {
             relations:['idCliente','pago.idConsumo']
         })
     }
+
+    getconsumocliente(){
+        return this.consumoRepository.find({
+            relations:['idCliente']
+        })
+    }
+
+
 
 }

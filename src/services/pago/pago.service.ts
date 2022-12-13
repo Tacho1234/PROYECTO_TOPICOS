@@ -2,12 +2,13 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PagoEntity } from 'src/entities/Pago.Entity';
 import { Repository } from 'typeorm';
+import { ClienteService } from '../cliente/cliente.service';
 
 @Injectable()
 export class PagoService {
 
     constructor(@InjectRepository(PagoEntity)
-        private pagoRepository: Repository<PagoEntity>){
+        private pagoRepository: Repository<PagoEntity>, private cliente:ClienteService){
         
     }
 
@@ -20,5 +21,18 @@ export class PagoService {
 
         .catch((error) => (console.log("El error es "+error)))
     }
+
+    getpago(){
+        return this.cliente.getpago();
+    }
+
+    getpagado(){
+        return this.cliente.getpagado();
+    }
+
+    getnopagado(){
+        return this.cliente.getnopagado();
+    }
+
 
 }

@@ -1,4 +1,4 @@
-import { IsDate,IsNumber} from "class-validator";
+import { IsBoolean, IsDate,IsNumber} from "class-validator";
 
 export class ConsumoModel{
     id: number;
@@ -8,4 +8,6 @@ export class ConsumoModel{
     consumo: number;
     @IsNumber()
     idCliente: number;
+    @IsBoolean()
+    pagado: boolean;
 }

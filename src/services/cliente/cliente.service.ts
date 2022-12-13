@@ -24,4 +24,20 @@ export class ClienteService {
         return await this.clienteRepository.findOne({ where:{id:id} })
     }
 
+    getreporte(){
+        return this.clienteRepository.find({relations:{consumo:{pago:true}}})
+    }
+
+    getpago(){
+        return this.clienteRepository.find({relations:{consumo:{pago:true}},select:{id:true,nombre:true,telefono:true,domicilio:true,fecha_nacimiento:true,consumo:{pago:true}}})
+    }
+
+    getpagado(){
+        return this.clienteRepository.find({relations:{consumo:{pago:true}},where:{consumo:{pago:{pagado:true}}},select:{id:true,nombre:true,telefono:true,domicilio:true,fecha_nacimiento:true,consumo:{pago:true}}})
+    }
+
+    getnopagado(){
+        return this.clienteRepository.find({relations:{consumo:{pago:true}},where:{consumo:{pago:{pagado:false}}},select:{id:true,nombre:true,telefono:true,domicilio:true,fecha_nacimiento:true,consumo:{pago:true}}})
+    }
+
 }
