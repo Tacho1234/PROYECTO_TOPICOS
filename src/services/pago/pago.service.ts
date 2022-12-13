@@ -22,16 +22,16 @@ export class PagoService {
         .catch((error) => (console.log("El error es "+error)))
     }
 
-    getpago(){
-        return this.cliente.getpago();
+    async getpago(){
+        return await this.cliente.getpago();
     }
 
-    getpagado(){
-        return this.cliente.getpagado();
+    async getpagado(){
+        return await this.cliente.getpagado();
     }
 
-    getnopagado(){
-        return this.cliente.getnopagado();
+    async getnopagado(){
+        return await this.cliente.getnopagado();
     }
 
 

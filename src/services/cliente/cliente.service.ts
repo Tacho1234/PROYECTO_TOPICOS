@@ -25,19 +25,29 @@ export class ClienteService {
     }
 
     getreporte(){
-        return this.clienteRepository.find({relations:{consumo:{pago:true}}})
+        return this.clienteRepository.find
+        ({relations:
+            {consumo:
+                {pago:true}}
+            })
     }
 
     getpago(){
-        return this.clienteRepository.find({relations:{consumo:{pago:true}},select:{id:true,nombre:true,telefono:true,domicilio:true,fecha_nacimiento:true,consumo:{pago:true}}})
+        
+        return this.clienteRepository.find({relations:{consumo:{pago:true}},select:{id:true,nombre:true,telefono:true,domicilio:true,fecha_nacimiento:true,consumo:{id:true, pago:true}}})
     }
 
-    getpagado(){
-        return this.clienteRepository.find({relations:{consumo:{pago:true}},where:{consumo:{pago:{pagado:true}}},select:{id:true,nombre:true,telefono:true,domicilio:true,fecha_nacimiento:true,consumo:{pago:true}}})
+    async getpagado(){
+        let clientesencontrados = await this.clienteRepository.find({relations:{consumo:{pago:true}},where:{consumo:{pago:{pagado:true}}},select:{id:true,nombre:true,telefono:true,domicilio:true,fecha_nacimiento:true,consumo:{id:true, pago:true}}})
+        return clientesencontrados;
     }
 
     getnopagado(){
-        return this.clienteRepository.find({relations:{consumo:{pago:true}},where:{consumo:{pago:{pagado:false}}},select:{id:true,nombre:true,telefono:true,domicilio:true,fecha_nacimiento:true,consumo:{pago:true}}})
+        return this.clienteRepository.find({relations:{consumo:{pago:true}},where:{consumo:{pago:{pagado:false}}},select:{id:true,nombre:true,telefono:true,domicilio:true,fecha_nacimiento:true,consumo:{ id:true, pago:true}}})
+    }
+
+    async getid(id:number){
+        return await this.clienteRepository.findOne({ relations:{consumo:{pago:true}}, where:{id:id} })
     }
 
 }

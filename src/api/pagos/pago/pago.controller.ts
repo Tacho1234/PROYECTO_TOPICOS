@@ -10,9 +10,9 @@ export class PagoController {
 
     @Get("/pago")
 
-    getpago(){
+    async getpago(){
         try{
-            this.pagoservice.getpago();
+            return await this.pagoservice.getpago();
         }catch(error){
             console.log("El error es "+error);
         }
@@ -20,9 +20,9 @@ export class PagoController {
 
     @Get("/pagado")
 
-    getpagado(){
+    async getpagado(){
         try{
-            this.pagoservice.getpagado();
+            return await this.pagoservice.getpagado();
         }catch(error){
             console.log("El error es "+error);
         }
@@ -30,9 +30,9 @@ export class PagoController {
 
     @Get("/nopagado")
 
-    getnopagado(){
+    async getnopagado(){
         try{
-            this.pagoservice.getnopagado();
+            return await this.pagoservice.getnopagado();
         }catch(error){
             console.log("El error es "+error);
         }

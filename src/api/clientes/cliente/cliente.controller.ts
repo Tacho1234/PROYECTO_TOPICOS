@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ClienteModel } from 'src/models/Cliente.Model';
 import { ClienteService } from 'src/services/cliente/cliente.service';
 
@@ -28,4 +28,24 @@ export class ClienteController {
             console.log("El error es "+error);
         }
     }
+
+    @Get("/clientesPagoPendiente")
+    getclientepago(){
+        try{
+            return this.Cliente.getpagado();
+        }catch(error){
+            console.log("El error es "+error);
+        }
+    }
+
+    @Get("/:id")
+    getbyid(@Param("id") param){
+        try{
+            let cliente = this.Cliente.getid(param);
+            return cliente ?? "El cliente no existe"
+        }catch(error){
+            console.log("El error es "+error);
+        }
+    }
+
 }
