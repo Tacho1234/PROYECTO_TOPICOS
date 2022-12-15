@@ -27,12 +27,13 @@ export class ConsumoService {
         if(consumo.consumo>= 1 && consumo.consumo<= 100){
             total= consumo.consumo * 150;
         }else if(consumo.consumo>= 101 && consumo.consumo<= 300){
+            total= consumo.consumo * 170;
+        }else if(consumo.consumo>300){
             total= consumo.consumo * 190;
-        }else{
-            console.log("El consumo esta fuera de rango");
-        }
+        }else console.log("No se puede introducir un consumo negativo");
 
-        if(edad >= 50){
+
+        if(edad > 50){
             total = total - (total * .10);
         }
 

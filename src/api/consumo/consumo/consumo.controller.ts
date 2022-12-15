@@ -20,7 +20,7 @@ export class ConsumoController {
 
     }
 
-    @Get()
+    @Get("/todos")
     getall(){
         try{
             return this.consumo.getall();
